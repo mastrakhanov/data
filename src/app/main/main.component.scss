@@ -1,0 +1,36 @@
+#wrapper {
+  padding: 10px;
+
+  & .table {
+
+
+    & i {
+      margin: 4px 0 0 2px;
+      cursor: pointer;
+    }
+
+    & tr {
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  & i {
+    font-size: 20px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  & #pagination-wrapper {
+    & .mat-form-field {
+      margin-right: 12px;
+    }
+
+  }
+
+}

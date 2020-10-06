@@ -1,0 +1,33 @@
+#form-create__wrapper {
+  max-width: 30rem;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  margin: 20px auto;
+
+  & .card-title {
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  & .form-group{
+
+    &.invalid {
+      input, select {
+        border-color: red;
+        border-width: 1px;
+      }
+    }
+  }
+
+  & .form-create__buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    &>button {
+      margin-right: 2%;
+    }
+  }
+}

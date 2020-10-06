@@ -1,0 +1,81 @@
+<div id="form-create__wrapper">
+  <h5 class="card-title">Создание документа</h5>
+  <form [formGroup]="createForm" (ngSubmit)="createDoc()">
+    <div class="form-group"
+         [ngClass]="{invalid: createForm.get('name').touched && createForm.get('name').invalid}"
+    >
+      <label for="exampleFormControlInput1">Название</label>
+      <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="name">
+    </div>
+    <div class="form-group"
+         [ngClass]="{invalid: createForm.get('code').touched && createForm.get('code').invalid}"
+    >
+      <label for="exampleFormControlInput2">Код документа</label>
+      <input type="text" class="form-control" id="exampleFormControlInput2" formControlName="code">
+    </div>
+    <div class="form-group"
+         [ngClass]="{invalid: createForm.get('type').touched && createForm.get('type').invalid}"
+    >
+      <label for="exampleFormControlInput3">Тип документа</label>
+      <input type="text" class="form-control" id="exampleFormControlInput3" formControlName="type">
+    </div>
+    <div class="form-group"
+         [ngClass]="{invalid: createForm.get('fio').touched && createForm.get('fio').invalid}"
+    >
+      <label for="exampleFormControlInput4">ФИО</label>
+      <input type="text" class="form-control" id="exampleFormControlInput4" formControlName="fio">
+    </div>
+    <div class="form-group"
+         [ngClass]="{invalid: createForm.get('account').touched && createForm.get('account').invalid}"
+    >
+      <label for="exampleFormControlInput5">Аккаунт</label>
+      <input type="text" class="form-control" id="exampleFormControlInput5" formControlName="account">
+    </div>
+    <div class="form-group"
+         [ngClass]="{invalid: createForm.get('post').touched && createForm.get('post').invalid}"
+    >
+      <label for="exampleFormControlInput6">Должность</label>
+      <input type="text" class="form-control" id="exampleFormControlInput6" formControlName="post">
+    </div>
+    <div class="form-group"
+         [ngClass]="{invalid: createForm.get('address').touched && createForm.get('address').invalid}"
+    >
+      <label for="exampleFormControlInput7">Адрес</label>
+      <input type="text" class="form-control" id="exampleFormControlInput7" formControlName="address">
+    </div>
+    <div class="form-group"
+         [ngClass]="{invalid: createForm.get('date').touched && createForm.get('date').invalid}"
+    >
+      <label for="exampleFormControlInput8">Дата</label>
+      <input type="date" class="form-control" id="exampleFormControlInput8" formControlName="date">
+    </div>
+    <div class="form-group"
+         [ngClass]="{invalid: createForm.get('status').touched && createForm.get('status').invalid}"
+    >
+      <label for="exampleFormControlInput9">Статус</label>
+      <input type="text" class="form-control" id="exampleFormControlInput9" formControlName="status">
+    </div>
+    <div class="form-group"
+         [ngClass]="{invalid: createForm.get('special').touched && createForm.get('special').invalid}"
+    >
+      <label for="exampleFormControlSelect1">Признак приватности</label>
+      <select class="form-control" id="exampleFormControlSelect1" formControlName="special">
+        <option>true</option>
+        <option>false</option>
+      </select>
+    </div>
+    <div class="form-create__buttons">
+      <button class="btn btn-primary"
+              type="submit"
+              [disabled] = this.createForm.invalid
+      >
+        Создать
+      </button>
+      <button class="btn btn-primary"
+              [routerLink]="['/']"
+      >
+        На главную
+      </button>
+    </div>
+  </form>
+</div>

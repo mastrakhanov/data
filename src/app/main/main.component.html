@@ -1,0 +1,96 @@
+<div id="wrapper">
+  <div class="table-responsive-lg">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">
+          id
+          <i class="fa fa-chevron-down" aria-hidden="true" (click)="isDownId = !isDownId; sortById()" *ngIf="isDownId"></i>
+          <i class="fa fa-chevron-up" aria-hidden="true" (click)="isDownId = !isDownId; sortById()" *ngIf="!isDownId"></i>
+        </th>
+        <th scope="col">
+          Аккаунт
+          <i class="fa fa-chevron-down" aria-hidden="true" (click)="isDownAccount = !isDownAccount; sortByAccount()" *ngIf="isDownAccount"></i>
+          <i class="fa fa-chevron-up" aria-hidden="true" (click)="isDownAccount = !isDownAccount; sortByAccount()" *ngIf="!isDownAccount"></i>
+        </th>
+        <th scope="col">
+          ФИО
+          <i class="fa fa-chevron-down" aria-hidden="true" (click)="isDownFio = !isDownFio; sortByFio()" *ngIf="isDownFio"></i>
+          <i class="fa fa-chevron-up" aria-hidden="true" (click)="isDownFio = !isDownFio; sortByFio()" *ngIf="!isDownFio"></i>
+        </th>
+        <th scope="col">
+          Должность
+          <i class="fa fa-chevron-down" aria-hidden="true" (click)="isDownPost = !isDownPost; sortByPost()" *ngIf="isDownPost"></i>
+          <i class="fa fa-chevron-up" aria-hidden="true" (click)="isDownPost = !isDownPost; sortByPost()" *ngIf="!isDownPost"></i>
+        </th>
+        <th scope="col">
+          Код документа
+          <i class="fa fa-chevron-down" aria-hidden="true" (click)="isDownCode = !isDownCode; sortByCode()" *ngIf="isDownCode"></i>
+          <i class="fa fa-chevron-up" aria-hidden="true" (click)="isDownCode = !isDownCode; sortByCode()" *ngIf="!isDownCode"></i>
+        </th>
+        <th scope="col">
+          Дата
+          <i class="fa fa-chevron-down" aria-hidden="true" (click)="isDownDate = !isDownDate; sortByDate()" *ngIf="isDownDate"></i>
+          <i class="fa fa-chevron-up" aria-hidden="true" (click)="isDownDate = !isDownDate; sortByDate()" *ngIf="!isDownDate"></i>
+        </th>
+        <th scope="col">
+          Название
+          <i class="fa fa-chevron-down" aria-hidden="true" (click)="isDownName = !isDownName; sortByName()" *ngIf="isDownName"></i>
+          <i class="fa fa-chevron-up" aria-hidden="true" (click)="isDownName = !isDownName; sortByName()" *ngIf="!isDownName"></i>
+        </th>
+        <th scope="col">
+          Тип
+          <i class="fa fa-chevron-down" aria-hidden="true" (click)="isDownType = !isDownType; sortByType()" *ngIf="isDownType"></i>
+          <i class="fa fa-chevron-up" aria-hidden="true" (click)="isDownType = !isDownType; sortByType()" *ngIf="!isDownType"></i>
+        </th>
+        <th scope="col">
+          Адрес
+          <i class="fa fa-chevron-down" aria-hidden="true" (click)="isDownAddress = !isDownAddress; sortByAddress()" *ngIf="isDownAddress"></i>
+          <i class="fa fa-chevron-up" aria-hidden="true" (click)="isDownAddress = !isDownAddress; sortByAddress()" *ngIf="!isDownAddress"></i>
+        </th>
+        <th scope="col">
+          Статус
+          <i class="fa fa-chevron-down" aria-hidden="true" (click)="isDownStatus = !isDownStatus; sortByStatus()" *ngIf="isDownStatus"></i>
+          <i class="fa fa-chevron-up" aria-hidden="true" (click)="isDownStatus = !isDownStatus; sortByStatus()" *ngIf="!isDownStatus"></i>
+        </th>
+        <th scope="col">
+          Приватность
+          <i class="fa fa-chevron-down" aria-hidden="true" (click)="isDownSpecial = !isDownSpecial; sortBySpecial()" *ngIf="isDownSpecial"></i>
+          <i class="fa fa-chevron-up" aria-hidden="true" (click)="isDownSpecial = !isDownSpecial; sortBySpecial()" *ngIf="!isDownSpecial"></i>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let i of result"
+          (click)="viewInfo($event)"
+          title="Открыть карточку документа"
+      >
+        <td scope="row">{{ i.id }}</td>
+        <td>{{ i.author.account }}</td>
+        <td>{{ i.author.fio }}</td>
+        <td>{{ i.author.post }}</td>
+        <td>{{ i.docCode }}</td>
+        <td>{{ i.docDate | date: 'dd.MM.yyyy' }}</td>
+        <td>{{ i.docName }}</td>
+        <td>{{ i.docType }}</td>
+        <td>{{ i.address }}</td>
+        <td>{{ i.status }}</td>
+        <td>{{ i.isSpecial }}</td>
+      </tr>
+      </tbody>
+    </table>
+    <i class="fa fa-plus"
+       aria-hidden="true"
+       title="Создать документ"
+       [routerLink]="['/', 'create']"
+    ></i>
+  </div>
+</div>
+<div id="pagination-wrapper">
+  <mat-paginator [length]="length"
+                 [pageSize]="pageSize"
+                 [pageSizeOptions]="pageSizeOptions"
+                 (page)="pageEvent = $event; paginatePage($event)"
+  >
+  </mat-paginator>
+</div>
