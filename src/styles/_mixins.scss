@@ -1,0 +1,13 @@
+@import "variables";
+
+
+@mixin basic {
+  max-width: $width;
+  border: 1px solid #eee;
+  border-radius: 4px;
+
+  & .title {
+    font-size: 20px;
+    font-weight: 500;
+  }
+}

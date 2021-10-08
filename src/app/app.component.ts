@@ -1,10 +1,34 @@
-import {Component} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+
+import { documents } from './documents';
+import { StorageService } from './services/storage.service';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  constructor(private readonly storageService: StorageService) { }
+
+  ngOnInit(): void {
+    if (!this.storageService.get('documents')) {
+      for (const document of documents) {
+        if (document.author === null) {
+          document.author = {
+            account: '-',
+            fio: '-',
+            position: '-'
+          };
+        }
+        document.date = new Date(document.date).getTime().toString();
+      }
+
+      this.storageService.set('documents', documents);
+    }
+  }
 
 }

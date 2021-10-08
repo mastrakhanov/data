@@ -2,10 +2,10 @@
 @import "src/styles/mixins";
 
 
-.form-create-wrapper {
+.form-edit-wrapper {
   @include basic;
 
-  & .form-group{
+  & .form-group {
 
     &.invalid {
       input, select {

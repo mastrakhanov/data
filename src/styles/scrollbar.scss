@@ -1,0 +1,18 @@
+* {
+  scrollbar-color: auto;
+  scrollbar-width: thin;
+
+  ::-webkit-scrollbar {
+    width: $scrollbar-width;
+    height: $scrollbar-width;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: $scrollbar-thumb;
+    &:hover {
+      background: $scrollbar-thumb-hover;
+    }
+  }
+}

@@ -1,72 +1,72 @@
-<div class="form-create-wrapper p-3 my-3 mx-auto">
-  <form [formGroup]="createForm">
-    <h5 class="title">Создание документа</h5>
+<div class="form-edit-wrapper p-3 mx-auto my-3">
+  <form [formGroup]="editForm">
+    <h5 class="title">Редактирование документа</h5>
 
     <div class="form-group mb-2"
-         [ngClass]="{ invalid: createForm.get('name')?.touched && createForm.get('name')?.invalid }"
+         [ngClass]="{ invalid: editForm.get('name')?.touched && editForm.get('name')?.invalid }"
     >
       <label for="exampleFormControlInput1">Название</label>
       <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="name">
     </div>
 
     <div class="form-group mb-2"
-         [ngClass]="{ invalid: createForm.get('code')?.touched && createForm.get('code')?.invalid }"
+         [ngClass]="{ invalid: editForm.get('code')?.touched && editForm.get('code')?.invalid }"
     >
       <label for="exampleFormControlInput2">Код документа</label>
       <input type="text" class="form-control" id="exampleFormControlInput2" formControlName="code">
     </div>
 
     <div class="form-group mb-2"
-         [ngClass]="{ invalid: createForm.get('type')?.touched && createForm.get('type')?.invalid }"
+         [ngClass]="{ invalid: editForm.get('type')?.touched && editForm.get('type')?.invalid }"
     >
       <label for="exampleFormControlInput3">Тип документа</label>
       <input type="text" class="form-control" id="exampleFormControlInput3" formControlName="type">
     </div>
 
     <div class="form-group mb-2"
-         [ngClass]="{ invalid: createForm.get('fio')?.touched && createForm.get('fio')?.invalid }"
+         [ngClass]="{ invalid: editForm.get('fio')?.touched && editForm.get('fio')?.invalid }"
     >
       <label for="exampleFormControlInput4">ФИО</label>
       <input type="text" class="form-control" id="exampleFormControlInput4" formControlName="fio">
     </div>
 
     <div class="form-group mb-2"
-         [ngClass]="{ invalid: createForm.get('account')?.touched && createForm.get('account')?.invalid }"
+         [ngClass]="{ invalid: editForm.get('account')?.touched && editForm.get('account')?.invalid }"
     >
       <label for="exampleFormControlInput5">Аккаунт</label>
       <input type="text" class="form-control" id="exampleFormControlInput5" formControlName="account">
     </div>
 
     <div class="form-group mb-2"
-         [ngClass]="{ invalid: createForm.get('position')?.touched && createForm.get('position')?.invalid }"
+         [ngClass]="{ invalid: editForm.get('position')?.touched && editForm.get('position')?.invalid }"
     >
       <label for="exampleFormControlInput6">Должность</label>
       <input type="text" class="form-control" id="exampleFormControlInput6" formControlName="position">
     </div>
 
     <div class="form-group mb-2"
-         [ngClass]="{ invalid: createForm.get('address')?.touched && createForm.get('address')?.invalid }"
+         [ngClass]="{ invalid: editForm.get('address')?.touched && editForm.get('address')?.invalid }"
     >
       <label for="exampleFormControlInput7">Адрес</label>
       <input type="text" class="form-control" id="exampleFormControlInput7" formControlName="address">
     </div>
 
     <div class="form-group mb-2"
-         [ngClass]="{ invalid: createForm.get('date')?.touched && createForm.get('date')?.invalid }"
+         [ngClass]="{ invalid: editForm.get('date')?.touched && editForm.get('date')?.invalid }"
     >
       <label for="exampleFormControlInput8">Дата</label>
       <input type="date" class="form-control" id="exampleFormControlInput8" formControlName="date">
     </div>
 
     <div class="form-group mb-2"
-         [ngClass]="{ invalid: createForm.get('status')?.touched && createForm.get('status')?.invalid }"
+         [ngClass]="{ invalid: editForm.get('status')?.touched && editForm.get('status')?.invalid }"
     >
       <label for="exampleFormControlInput9">Статус</label>
       <input type="text" class="form-control" id="exampleFormControlInput9" formControlName="status">
     </div>
 
     <div class="form-group mb-2"
-         [ngClass]="{ invalid: createForm.get('private')?.touched && createForm.get('private')?.invalid }"
+         [ngClass]="{ invalid: editForm.get('private')?.touched && editForm.get('private')?.invalid }"
     >
       <label for="exampleFormControlSelect1">Признак приватности</label>
       <select class="form-control" id="exampleFormControlSelect1" formControlName="private">
@@ -78,17 +78,16 @@
     <div class="d-flex flex-wrap justify-content-around">
       <button class="btn btn-primary"
               type="button"
-              (click)="create()"
-              [disabled]="this.createForm.invalid"
+              (click)="save()"
+              [disabled]="this.editForm.invalid"
       >
-        Создать
+        Сохранить
       </button>
-
       <button class="btn btn-primary"
               type="button"
-              [routerLink]="['/']"
+              (click)="changeVisibleParams(true, false)"
       >
-        На главную
+        Отмена
       </button>
     </div>
   </form>

@@ -1,6 +1,7 @@
 import { AppPage } from './app.po';
 import { browser, logging } from 'protractor';
 
+
 describe('workspace-project App', () => {
   let page: AppPage;
 
@@ -10,7 +11,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('data app is running!');
+    expect(page.getTitleText()).toEqual('documents app is running!');
   });
 
   afterEach(async () => {

@@ -1,9 +1,13 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "paths": {
+      "@app/*": [
+        "src/app/*"
+      ]
+    },
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,

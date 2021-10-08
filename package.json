@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -22,7 +22,8 @@
     "@angular/platform-browser": "~10.0.11",
     "@angular/platform-browser-dynamic": "~10.0.11",
     "@angular/router": "~10.0.11",
-    "bootstrap": "^4.5.2",
+    "@ng-web-apis/common": "^1.12.0",
+    "bootstrap": "^5.1.2",
     "font-awesome": "^4.7.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",

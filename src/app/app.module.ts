@@ -1,30 +1,39 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
-import { CardComponent } from './card/card.component';
-import { MainComponent } from './main/main.component';
 import { CreateComponent } from './create/create.component';
+import { MainComponent } from './main/main.component';
+import { DocumentComponent } from './document/document.component';
+import { CardComponent } from './document/card/card.component';
+import { EditComponent } from './document/edit/edit.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    CreateComponent,
+    DocumentComponent,
     CardComponent,
-    MainComponent,
-    CreateComponent
+    EditComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

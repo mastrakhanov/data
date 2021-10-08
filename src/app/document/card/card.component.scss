@@ -1,0 +1,19 @@
+@import "src/styles/variables";
+@import "src/styles/mixins";
+
+
+.card {
+  @include basic;
+
+  & .card-text {
+    word-wrap: break-word;
+  }
+
+  & i {
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}

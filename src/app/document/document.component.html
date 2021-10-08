@@ -1,0 +1,10 @@
+<ng-container *ngIf="document$ | async as document">
+  <app-card *ngIf="visibleState.cardVisible$.value"
+            [document]="document"
+            [visibleState]="visibleState"
+  ></app-card>
+  <app-edit *ngIf="visibleState.editVisible$.value"
+            [document]="document"
+            [visibleState]="visibleState"
+  ></app-edit>
+</ng-container>

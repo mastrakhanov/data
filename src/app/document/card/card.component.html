@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-center my-3">
+  <div class="card p-3">
+    <h5 class="title">{{ document?.name }}</h5>
+
+    <p class="card-text">Дата создания: {{ document?.date | date: 'dd.MM.yyyy' }}</p>
+    <p class="card-text">Тип документа: {{ document?.type }}</p>
+    <p class="card-text">ФИО: {{ document?.author?.fio }}</p>
+    <p class="card-text">Аккаунт: {{ document?.author?.account }}</p>
+    <p class="card-text">Должность: {{ document?.author?.position }}</p>
+    <p class="card-text">Код документа: {{ document?.code }}</p>
+    <p class="card-text">Статус: {{ document?.status }}</p>
+    <p class="card-text">Адрес: {{ document?.address }}</p>
+    <p class="card-text">Признак приватности: {{ document?.private }}</p>
+
+    <div class="d-flex justify-content-around gap-3 align-items-center">
+      <button class="btn btn-primary"
+              type="button"
+              (click)="changeVisibleParams(false, true)"
+      >
+        Редактировать
+      </button>
+
+      <button class="btn btn-primary"
+              type="button"
+              [routerLink]="['/']"
+      >
+        На главную
+      </button>
+
+      <i class="fa fa-trash" title="Удалить"
+         (click)="delete()"
+      ></i>
+    </div>
+  </div>
+</div>
