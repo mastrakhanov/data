@@ -3,7 +3,7 @@ export interface IDocument {
   address: string;
   author: IAuthor | null;
   code: string;
-  date: any;
+  date: number | string;
   name: string;
   type: string;
   private: boolean;

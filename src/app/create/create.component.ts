@@ -5,17 +5,8 @@ import { Router } from '@angular/router';
 import { IDocument } from '@app/interfaces';
 import { StorageService } from '@app/services/storage.service';
 
+import { makeId } from './make-id.function';
 
-const makeId = (): string => {
-  let text = '';
-  const possible = 'abcdefghijklmnopqrstuvwxyz0123456789';
-
-  for (let i = 0; i < 16; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
-
-  return text;
-};
 
 @Component({
   selector: 'app-create',
@@ -60,12 +51,13 @@ export class CreateComponent {
       private: this.createForm.value.private
     };
 
-    const storageDocuments = this.storageService.get('documents');
-    storageDocuments.push(document);
+    const storageDocuments = this.storageService.getDocuments();
+    storageDocuments?.push(document);
 
-    this.storageService.set('documents', storageDocuments);
+    this.storageService.setDocuments(storageDocuments);
 
     this.createForm.reset();
     this.router.navigateByUrl('/');
   }
+
 }

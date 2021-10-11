@@ -14,7 +14,7 @@ export const documents: IDocument[] = [
     name: 'Заявление о внесении в реестр №271',
     type: 'request',
     address: 'г. Москва, ул. Академика Королева, 32',
-    status: 'registred',
+    status: 'registered',
     private: true
   },
   {
@@ -44,7 +44,7 @@ export const documents: IDocument[] = [
     name: 'Заявление о внесении в реестр №272',
     type: 'certificate',
     address: 'г. Москва, Партийный пер., 7с2',
-    status: 'registred',
+    status: 'registered',
     private: false
   },
   {
@@ -55,7 +55,7 @@ export const documents: IDocument[] = [
     name: 'Заявление о внесении в реестр №273',
     type: 'certificate',
     address: 'г. Москва, Партийный пер., 7с3',
-    status: 'registred',
+    status: 'registered',
     private: false
   },
   {
@@ -70,7 +70,7 @@ export const documents: IDocument[] = [
     name: 'Заявление о внесении в реестр №274',
     type: 'certificate',
     address: 'г. Москва, Партийный пер., 7с4',
-    status: 'registred',
+    status: 'registered',
     private: false
   },
   {
@@ -85,7 +85,7 @@ export const documents: IDocument[] = [
     name: 'Заявление о внесении в реестр №275',
     type: 'certificate',
     address: 'г. Москва, Партийный пер., 7с5',
-    status: 'registred',
+    status: 'registered',
     private: false
   },
   {
@@ -96,7 +96,7 @@ export const documents: IDocument[] = [
     name: 'Заявление о внесении в реестр №276',
     type: 'certificate',
     address: 'г. Москва, Партийный пер., 8',
-    status: 'registred',
+    status: 'registered',
     private: false
   },
   {
@@ -122,7 +122,7 @@ export const documents: IDocument[] = [
     name: 'Заявление о внесении в реестр №278',
     type: 'certificate',
     address: 'г. Москва, Партийный пер., 10',
-    status: 'registred',
+    status: 'registered',
     private: true
   },
   {
@@ -133,7 +133,7 @@ export const documents: IDocument[] = [
     name: 'Заявление о внесении в реестр №279',
     type: 'certificate',
     address: 'г. Москва, Партийный пер., 11',
-    status: 'registred',
+    status: 'registered',
     private: true
   },
   {
@@ -159,7 +159,7 @@ export const documents: IDocument[] = [
     name: 'Заявление о внесении в реестр №281',
     type: 'request',
     address: 'г. Москва, Партийный пер., 13',
-    status: 'registred',
+    status: 'registered',
     private: true
   },
   {

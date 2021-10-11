@@ -1,27 +1,13 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, SortDirection } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { BehaviorSubject, combineLatest, EMPTY, Observable, Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, take, tap } from 'rxjs/operators';
 
 import { IDocument, IPaging, ISorting } from '@app/interfaces';
 import { StorageService } from '@app/services/storage.service';
 
-
-enum Column {
-  id = 'id',
-  account = 'account',
-  fio = 'fio',
-  position = 'position',
-  code = 'code',
-  date = 'date',
-  name = 'name',
-  type = 'type',
-  address = 'address',
-  status = 'status',
-  private = 'private'
-}
 
 @Component({
   selector: 'app-main',
@@ -36,17 +22,17 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator = new MatPaginator(new MatPaginatorIntl(), ChangeDetectorRef.prototype);
 
   displayedColumns: string[] = [
-    Column.id,
-    Column.account,
-    Column.fio,
-    Column.position,
-    Column.code,
-    Column.date,
-    Column.name,
-    Column.type,
-    Column.address,
-    Column.status,
-    Column.private
+    'id',
+    'account',
+    'fio',
+    'position',
+    'code',
+    'date',
+    'name',
+    'type',
+    'address',
+    'status',
+    'private'
   ];
 
   dataSource$: Observable<IDocument[]> = EMPTY;
@@ -64,7 +50,15 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.storageData$.next(this.storageService.get('documents'));
+    this.storageData$.next(this.storageService.getDocuments());
+
+    if (this.storageService.getSorting()) {
+      this.sortOptions$.next(this.storageService.getSorting());
+    }
+
+    if (this.storageService.getPaging()) {
+      this.paginatorOptions$.next(this.storageService.getPaging());
+    }
 
     this.dataSource$ = combineLatest([
       this.storageData$,
@@ -82,23 +76,43 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
               return direction === 'asc'
                 // tslint:disable:no-string-literal
                 ? (a as any)['author'][field] > (b as any)['author'][field] ? 1 : -1
-                // tslint:disable:no-string-literal
                 : (a as any)['author'][field] > (b as any)['author'][field] ? -1 : 1;
             }
           }),
           page,
           pageSize
         })),
-        tap(({ documents }) => this.storageService.set('documents', documents)),
+        tap(({ documents }) => this.storageService.setDocuments(documents)),
         map(({ documents, page, pageSize }) => documents.slice(page * pageSize, pageSize * (page + 1)))
       );
   }
 
   ngAfterViewInit(): void {
+    this.sortOptions$
+      .pipe(
+        take(1),
+        tap(({ field, direction }) => {
+          if (!field || !direction) { return; }
+
+          this.sort.active = field;
+          this.sort.direction = direction as SortDirection;
+
+          // tslint-disable-next-line:no-underscore-dangle
+          this.sort._stateChanges.next();
+
+          const sortHeader: any = this.sort.sortables.get(this.sort.active);
+
+          if (sortHeader) {
+            sortHeader['_setAnimationTransitionState']({ toState: 'active' });
+          }
+        }))
+      .subscribe();
+
     this.sortChanged = this.sort.sortChange
       .pipe(
         debounceTime(500),
-        tap(({ active, direction }) => this.sortOptions$.next({ field: active, direction })))
+        tap(({ active, direction }) => this.sortOptions$.next({ field: active, direction })),
+        tap(({ active, direction }) => this.storageService.setSorting({ field: active, direction })))
       .subscribe();
 
     this.pageChanged = this.paginator.page
@@ -106,9 +120,9 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
         distinctUntilChanged((prev, next) => JSON.stringify(prev) === JSON.stringify(next)),
         tap(({ pageIndex, pageSize }) => {
           this.paginatorOptions$.next({ page: pageIndex, pageSize });
+          this.storageService.setPaging({ page: pageIndex, pageSize });
         })
       ).subscribe();
-
   }
 
   ngOnDestroy(): void {

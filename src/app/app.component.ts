@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   constructor(private readonly storageService: StorageService) { }
 
   ngOnInit(): void {
-    if (!this.storageService.get('documents')) {
+    if (!this.storageService.getDocuments()) {
       for (const document of documents) {
         if (document.author === null) {
           document.author = {
@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
         document.date = new Date(document.date).getTime().toString();
       }
 
-      this.storageService.set('documents', documents);
+      this.storageService.setDocuments(documents);
     }
   }
 

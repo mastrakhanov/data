@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { IDocument } from '@app/interfaces';
 import { StorageService } from '@app/services/storage.service';
@@ -18,11 +18,12 @@ export class EditComponent implements OnChanges {
   @Input() document?: IDocument;
   @Input() visibleState!: VisibleState;
 
+  @Output() documentChange = new EventEmitter<IDocument>();
+
   editForm!: FormGroup;
 
   constructor(
     private readonly router: Router,
-    private readonly activatedRoute: ActivatedRoute,
     private readonly storageService: StorageService
   ) { }
 
@@ -54,7 +55,7 @@ export class EditComponent implements OnChanges {
       author: {
         account: this.editForm.value.account,
         fio: this.editForm.value.fio,
-        position: this.editForm.value.post
+        position: this.editForm.value.position
       },
       code: this.editForm.value.code,
       date: new Date(this.editForm.value.date).getTime(),
@@ -65,11 +66,12 @@ export class EditComponent implements OnChanges {
       private: this.editForm.value.private
     };
 
-    const storageDocuments = this.storageService.get('documents');
+    const storageDocuments = this.storageService.getDocuments();
     const index = storageDocuments.findIndex(item => item.id === document.id);
     storageDocuments.splice(index, 1, document);
 
-    this.storageService.set('documents', storageDocuments);
+    this.storageService.setDocuments(storageDocuments);
+    this.documentChange.emit(document);
 
     this.visibleState.editVisible$.next(false);
     this.visibleState.cardVisible$.next(true);

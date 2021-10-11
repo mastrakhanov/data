@@ -1,5 +1,5 @@
 <div class="wrapper m-2">
-  <table mat-table [dataSource]="dataSource$" matSort [matSortDisableClear]="true">
+  <table mat-table [dataSource]="dataSource$" matSort>
 
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>id</th>
@@ -92,6 +92,7 @@
     <i class="fa fa-plus"></i>
   </a>
   <mat-paginator [length]="storageData$.value.length"
+                 [pageIndex]="paginatorOptions$.value.page"
                  [pageSize]="paginatorOptions$.value.pageSize"
                  [pageSizeOptions]="[5, 10, 25, 100]"
                  [showFirstLastButtons]="true"

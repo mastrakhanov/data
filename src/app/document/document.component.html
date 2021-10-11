@@ -6,5 +6,6 @@
   <app-edit *ngIf="visibleState.editVisible$.value"
             [document]="document"
             [visibleState]="visibleState"
+            (documentChange)="changeDocument($event)"
   ></app-edit>
 </ng-container>

@@ -32,11 +32,11 @@ export class CardComponent implements OnChanges {
   }
 
   delete(): void {
-    const storageDocuments = this.storageService.get('documents');
+    const storageDocuments = this.storageService.getDocuments();
     const index = storageDocuments.findIndex(item => item.id === this.document$.value.id);
     storageDocuments.splice(index, 1);
 
-    this.storageService.set('documents', storageDocuments);
+    this.storageService.setDocuments(storageDocuments);
 
     this.router.navigateByUrl('/');
   }
