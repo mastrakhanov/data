@@ -124,6 +124,19 @@ describe('EditComponent', () => {
     expect(component.changeVisibleParams).toHaveBeenCalledWith(true, false);
   });
 
+  it('editForm should contain name, code, type, fio, account, position, address, date, status, private controls', () => {
+    expect(component.editForm.contains('name')).toBeTrue();
+    expect(component.editForm.contains('code')).toBeTrue();
+    expect(component.editForm.contains('type')).toBeTrue();
+    expect(component.editForm.contains('fio')).toBeTrue();
+    expect(component.editForm.contains('account')).toBeTrue();
+    expect(component.editForm.contains('position')).toBeTrue();
+    expect(component.editForm.contains('address')).toBeTrue();
+    expect(component.editForm.contains('date')).toBeTrue();
+    expect(component.editForm.contains('status')).toBeTrue();
+    expect(component.editForm.contains('private')).toBeTrue();
+  });
+
   it('save() should call getDocuments(), setDocuments(), emit() and change visibleState', () => {
     spyOn(storageService, 'getDocuments').and.returnValue([documentStub1]);
     spyOn(storageService, 'setDocuments');

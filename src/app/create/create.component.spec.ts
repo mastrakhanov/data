@@ -106,6 +106,19 @@ describe('CreateComponent', () => {
     expect(element.textContent).toContain('На главную');
   });
 
+  it('createForm should contain name, code, type, fio, account, position, address, date, status, private controls', () => {
+    expect(component.createForm.contains('name')).toBeTrue();
+    expect(component.createForm.contains('code')).toBeTrue();
+    expect(component.createForm.contains('type')).toBeTrue();
+    expect(component.createForm.contains('fio')).toBeTrue();
+    expect(component.createForm.contains('account')).toBeTrue();
+    expect(component.createForm.contains('position')).toBeTrue();
+    expect(component.createForm.contains('address')).toBeTrue();
+    expect(component.createForm.contains('date')).toBeTrue();
+    expect(component.createForm.contains('status')).toBeTrue();
+    expect(component.createForm.contains('private')).toBeTrue();
+  });
+
   it('should link to /', (done) => {
     element = fixture.nativeElement.querySelectorAll('button')[1];
 
